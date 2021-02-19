@@ -18,7 +18,7 @@ minimal_mistakes_skin    : "mint" # "default", "air", "aqua", "contrast", "dark"
 locale                   : "en-US"
 title                    : "Claude's Blog"
 title_separator          : "-"
-subtitle                 : "IT Adventures" # site tagline that appears below site title in masthead
+subtitle                 : "my personal IT adventures" # site tagline that appears below site title in masthead
 name                     : "Claude Hähni"
 description              : # "An amazing website."
 url                      : "https://web.chaehni.ch" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
@@ -287,6 +287,7 @@ defaults:
       comments: # true
       share: true
       related: true
+
   # _pages
   - scope:
       path: ""
