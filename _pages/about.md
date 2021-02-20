@@ -16,7 +16,7 @@ Technology in Zurich (ETHZ).
 This is a space for me to document and share various things related to my work
 as a computer scientist.
 
-My main work revolves around computer networks and cloud computing with an emphasize on
+My main work revolves around computer networks and cloud computing with an emphasis on
 security.
 However, I'm also passionate about anything else computer or tech related.
 
