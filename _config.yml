@@ -86,16 +86,16 @@ social:
 
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "google-gtag", "custom"
+  provider               : "google-gtag" # false (default), "google", "google-universal", "google-gtag", "custom"
   google:
-    tracking_id          :
-    anonymize_ip         : # true, false (default)
+    tracking_id          : "G-WFZRZSB2SJ"
+    anonymize_ip         : false # true, false (default)
 
 
 # Site Author
 author:
   name             : "Claude Hähni"
-  avatar           : "/assets/images/bio-photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/bio-photo-square.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Researcher at ETH Zurich"
   location         : "Zurich, Switzerland"
   email            :
@@ -287,6 +287,7 @@ defaults:
       comments: # true
       share: true
       related: true
+      show_date: true
 
   # _pages
   - scope:
