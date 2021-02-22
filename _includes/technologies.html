@@ -1,0 +1,15 @@
+{% if page.techs %}
+
+<h3> Technology Stack </h3>
+
+{% for tech in page.techs %}
+{% assign item = tech[1] %}
+<div>
+    <a href={{ item.url }}>
+        <img src={{ item.image }} alt={{ item.name }} title={{ item.title }}>
+    </a>
+</div>
+{% endfor %}
+<br>
+
+{% endif %}
