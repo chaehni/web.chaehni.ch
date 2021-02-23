@@ -29,7 +29,7 @@ Bamert, Adrian Perrig*
 ### Master Thesis
 **Title**: *Mondrian: A Comprehensive Inter-domain Network Zoning Architecture*  
 **Author**: *Claude Hähni*  
-**Advisors**: *Adrian Perrig, David Hausheer, Ercan Ucan*  
+**Advisors**: *Adrian Perrig, Jonghoon Kwon, Patrick Bamert*  
 **Submitted**: *September 9, 2020*
 
 [Link to thesis](https://github.com/chaehni/master-thesis/blob/master/thesis.pdf)
@@ -38,7 +38,7 @@ Bamert, Adrian Perrig*
 **Title**: *Design and Implementation of Functionality, Security and
 Maintainability Enhancements for SCIONLab Coordination Service*  
 **Author**: *Claude Hähni*  
-**Advisors**: *Adrian Perrig, Jonghoon Kwon, Patrick Bamer*  
+**Advisors**: *Adrian Perrig, David Hausheer, Ercan Ucan*  
 **Submitted**: *October 7, 2017*
 
 [Link to thesis](https://github.com/chaehni/bachelor-thesis/blob/master/thesis.pdf)
