@@ -9,7 +9,7 @@ gallery:
     image_path: /assets/images/post-teasers/before-after.png
     title: Before and After comparison
 techs:
-  jekyll:
+  - jekyll:
     name: "Jekyll"
     url: "https://jekyllrb.com/"
     image: "/assets/images/tech/jekyll.png"
