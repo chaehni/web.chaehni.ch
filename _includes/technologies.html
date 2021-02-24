@@ -3,10 +3,9 @@
 <h3> Technology Stack </h3>
 
 {% for tech in page.techs %}
-{% assign item = tech[1] %}
 <div>
     <a href={{ item.url }}>
-        <img class="technology-stack" src={{ item.image }} alt={{ item.name }} title={{ item.title }}>
+        <img class="technology-stack" src={{ tech.image }} alt={{ tech.name }} title={{ tech.title }}>
     </a>
 </div>
 {% endfor %}
