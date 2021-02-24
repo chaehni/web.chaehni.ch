@@ -3,7 +3,7 @@ permalink: /publications/
 title: "Publications"
 excerpt: "my published work"
 read_time: false
-last_modified_at: 2021-02-19
+last_modified_at: 2021-02-23
 toc: true
 ---
 
@@ -16,6 +16,7 @@ This page is a collection of my published work including conference papers and t
 Bamert, Adrian Perrig*  
 **Published at**: *NDSS 2021*
 
+[Download](/downloads/mondrian_paper.pdf)
 [Link to NDSS](https://www.ndss-symposium.org/ndss-paper/mondrian-comprehensive-inter-domain-network-zoning-architecture/)
 
 ### SVLAN
@@ -23,6 +24,7 @@ Bamert, Adrian Perrig*
 **Authors**: *Jonghoon Kwon, Taeho Lee, Claude Hähni, Adrian Perrig*  
 **Published at**: *NDSS 2020*
 
+[Download](/downloads/svlan_paper.pdf)
 [Link to NDSS](https://www.ndss-symposium.org/ndss-paper/svlan-secure-scalable-network-virtualization/)
 
 ## Theses
@@ -32,7 +34,7 @@ Bamert, Adrian Perrig*
 **Advisors**: *Adrian Perrig, Jonghoon Kwon, Patrick Bamert*  
 **Submitted**: *September 9, 2020*
 
-[Link to thesis](https://github.com/chaehni/master-thesis/blob/master/thesis.pdf)
+[Download](/downloads/master_thesis.pdf)
 
 ### Bachelor Thesis
 **Title**: *Design and Implementation of Functionality, Security and
@@ -41,4 +43,4 @@ Maintainability Enhancements for SCIONLab Coordination Service*
 **Advisors**: *Adrian Perrig, David Hausheer, Ercan Ucan*  
 **Submitted**: *October 7, 2017*
 
-[Link to thesis](https://github.com/chaehni/bachelor-thesis/blob/master/thesis.pdf)
+[Download](/downloads/bachelor_thesis.pdf)
