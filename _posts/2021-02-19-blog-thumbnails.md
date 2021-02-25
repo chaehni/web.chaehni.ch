@@ -14,7 +14,7 @@ techs:
     url: "https://jekyllrb.com/"
     image: "/assets/images/tech/jekyll.png"
 categories:
-  - Meta
+  - Web
 tags:
   - Jekyll
   - Liquid
