@@ -101,7 +101,7 @@ such that it knows to send corresponding packets via the SIG, translating the
 connections to SCION. The goal is to make this configuration easily
 accessible via the router's web interface.
 
-A few words about residential SCION connectivity: Many ISPs, like mine, don't yet
+A few words about residential SCION connectivity: Because most ISPs, like mine, don't yet
 offer a native SCION connection, I will connect my router to the
 [SCIONLab](https://www.scionlab.org/) network. SCIONLab is a global research
 network, open to anyone who who wants to try out SCION. Once my ISP offers
@@ -242,9 +242,10 @@ two sub-tabs, one for the SCION configuration and one for the SIG configuration.
 This is the result:
 {% include gallery id="gallery2" %}
 
-With this, any valid SCION configuration can be uploaded and then being started
-and stopped through the convenience of the LuCI interface. Additionally, SIG
-rules can be defined and the SIG can be started and stopped independently of SCION.
+I can upload any valid SCION configuration and then use the `Start`, `Restart` and
+`Stop` buttons to control the SCION installation through the convenience of
+the LuCI interface. Additionally, SIG rules can be defined and the SIG can be
+started and stopped independently of SCION.
 
 ## Testing
 
