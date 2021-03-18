@@ -104,7 +104,7 @@ accessible via the router's web interface.
 A few words about residential SCION connectivity: Because most ISPs, like mine, don't yet
 offer a native SCION connection, I will connect my router to the
 [SCIONLab](https://www.scionlab.org/) network. SCIONLab is a global research
-network, open to anyone who who wants to try out SCION. Once my ISP offers
+network, open to anyone who wants to try out SCION. Once my ISP offers
 access to the SCION production network I'll be able to easily switch over to
 that network.
 {: .notice--info}
