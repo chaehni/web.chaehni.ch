@@ -3,7 +3,7 @@ permalink: /publications/
 title: "Publications"
 excerpt: "my published work"
 read_time: false
-last_modified_at: 2021-02-23
+last_modified_at: 2021-03-01
 toc: true
 ---
 
@@ -14,9 +14,13 @@ This page is a collection of my published work including conference papers and t
 **Title**: *Mondrian: Comprehensive Inter-domain Network Zoning Architecture*  
 **Authors**: *Jonghoon Kwon, Claude Hähni, Patrick
 Bamert, Adrian Perrig*  
-**Published at**: *NDSS 2021*
+**Published at**: *NDSS 2021*  
+
+<p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vH-42BYt30w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
 
 [Download](/downloads/mondrian_paper.pdf)
+|
 [Link to NDSS](https://www.ndss-symposium.org/ndss-paper/mondrian-comprehensive-inter-domain-network-zoning-architecture/)
 
 ### SVLAN
@@ -25,6 +29,7 @@ Bamert, Adrian Perrig*
 **Published at**: *NDSS 2020*
 
 [Download](/downloads/svlan_paper.pdf)
+|
 [Link to NDSS](https://www.ndss-symposium.org/ndss-paper/svlan-secure-scalable-network-virtualization/)
 
 ## Theses
