@@ -2,6 +2,7 @@
 title: "Building a SCION enabled Home Router"
 excerpt: How to bring SCION into your home!
 toc: true
+last_modified_at: 2021-03-19
 header:
   overlay_image: "/assets/images/scion-router/router-teaser.jpg"
   overlay_filter: 0.5
@@ -59,10 +60,11 @@ course, regular IP traffic should not be affected and work just fine in parallel
 to SCION.
 
 ## Why build your own home router?
+
 Reading the title of this post you might ask yourself: "Why build your own
 router when my ISP ships a perfectly capable router already?"
 The truth is that ISPs, like all companies, operate on a budget. It's in their
-interest to sell as many Internet connections as possible for as little cost as
+interest to sell as many Internet connections as possible for as low a cost as
 possible. ISP provided routers tend to be bad in a couple of ways:
 
 - ISP routers tend to be configured for their convenience and not for security
@@ -76,8 +78,8 @@ possible. ISP provided routers tend to be bad in a couple of ways:
 - Potentially millions of people run the exact same router with the exact same
   standard configuration, making these routers a prime target for any attacker.
 
-
 ## Overview
+
 With the "Why?" out of the way, I'd now like to provide an overview of my envisioned router.
 
 The figure below shows an abstraction of the desired outcome. The router
@@ -110,6 +112,7 @@ that network.
 {: .notice--info}
 
 ## The Hardware
+
 For the hardware, I chose the APU platform from [PC
 Engines](https://www.pcengines.ch/) which is a widely adopted server platform
 for low power, wireless networking and embedded applications based on the x86
@@ -127,6 +130,7 @@ architecture. All the parts required for this build are listed below.
 | usbcom1a     | USB to DB9F serial adapter                                                                                     |
 
 ### Assembling the Router
+
 For the basic assembly of the APU I followed this video:
 
 <p>
@@ -136,18 +140,19 @@ For the basic assembly of the APU I followed this video:
 In addition to the standard setup, of course I also wanted my router to be Wi-Fi capable!
 For that reason I installed the miniPCI wireless card and the antennas.
 
-{% comment %}
-(image of router internals)
-{% endcomment %}
+Internals of my router:
+![Router internals](/assets/images/scion-router/router_internals.jpg "Router internals")
 
 This is what my fully assembled router looks like:
 ![Full assembled SCION Router](/assets/images/scion-router/router.jpg "Fully assembled SCION Router")
 
 ## The Software
+
 Of course, hardware alone doesn't make a router. Luckily, there are excellent
 open-source router platforms available. One of them is OpenWRT.
 
 ### OpenWRT
+
 [OpenWRT](https://openwrt.org/) is a full Linux-based operating system
 designed for wireless routers. It offers a writable file system and it even
 includes a package manager which makes the OS highly extensible. OpenWRT has
@@ -159,6 +164,7 @@ interface which you can access over the web (usually `192.168.1.1`).
 However, like everything else about OpenWRT it is very feature rich and highly customizable.
 
 ### Accessing the board
+
 Since the APU2 board does not have a display output and SSH is only available
 once the OS is installed, we need to rely on the DB9 serial port to establish a
 connection. There are several serial communication programs available. I used
@@ -170,6 +176,7 @@ over the USB-to-serial cable plugged into my computer and the APU:
 115200 is the baud rate (or symbol rate) of the APU.
 
 ### Flashing the OS
+
 At the time of writing, the most recent OpenWRT version is ```19.06.4``` and can
 be downloaded from
 [here](https://downloads.openwrt.org/releases/18.06.4/targets/x86/64/).
@@ -180,26 +187,36 @@ the root file system partition. I used to following steps to flash the OS to the
 board and expand the root file system to us the full size of the SDD (instead of
 an SD card, one can also use a USB thumb drive):
 
-* Copy the downloaded image onto to an SD card: `gzip -dc openwrt-19.07.7-x86-64-combined-ext4.img.gz | sudo dd status=progress bs=8M of=/dev/sdX`
-* Boot the board from SD card
-* Clone the SD onto the SSD drive: `dd bs=8M if=/dev/mmcblk0 of=/dev/sda`
-* The root partition now has the same size (256M) as the SD. We need to increase it:
-    * `fdisk /dev/sda` (fdisk needs to be installed)
-    * `d 2` to delete the root file system partition on the SSD
-    * `n 2` to create a new partition, when asked for input accept standard values
-    * `p` to see the new partition layout, confirm the second partition has increased in size
-    * `w` to write the changes to disk
-* Copy over the root file system from the SD card: `dd bs=8M if=/dev/mmcblk0p2 of=/dev/sda2`
-* Expand the file system to make use of the entire partition:
-    * `e2fsck -f /dev/sda2` (accept eventual repairs)
-    * `resize2fs /dev/sda2` (resize2fs needs to be installed)
-* remove the SD card and boot from SSD, confirm the root partition `/dev/root` has increased in size: `df -h`
+- Copy the downloaded image onto to an SD card: `gzip -dc openwrt-19.07.7-x86-64-combined-ext4.img.gz | sudo dd status=progress bs=8M of=/dev/sdX`
+- Boot the board from SD card
+- Clone the SD onto the SSD drive: `dd bs=8M if=/dev/mmcblk0 of=/dev/sda`
+- The root partition now has the same size (256M) as the SD. We need to increase it:
+  - `fdisk /dev/sda` (fdisk needs to be installed)
+  - `d 2` to delete the root file system partition on the SSD
+  - `n 2` to create a new partition, when asked for input accept standard values
+  - `p` to see the new partition layout, confirm the second partition has increased in size
+  - `w` to write the changes to disk
+- Copy over the root file system from the SD card: `dd bs=8M if=/dev/mmcblk0p2 of=/dev/sda2`
+- Expand the file system to make use of the entire partition:
+  - `e2fsck -f /dev/sda2` (accept eventual repairs)
+  - `resize2fs /dev/sda2` (resize2fs needs to be installed)
+- remove the SD card and boot from SSD, confirm the root partition `/dev/root` has increased in size: `df -h`
 
-Success! The router can now be accessed via a browser at `192.168.1.1`.
+Success! The router can now be accessed via browser at `192.168.1.1`.
 
 {% include gallery id="gallery" %}
 
-## Make it speak SCION!
+### Enabling Wi-Fi
+
+OpenWRT does not ship with the driver and firmware for the wle600vx Wi-Fi card out of the box. The following packages need to be installed manually:
+
+- `ath10k-firmware-qca988x` - the firmware for the Qualcom Atheros 9882 SoC on the card
+- `kmod-ath10k` - the driver for our Atheros based card
+- `wpad-mini` - for adding support for strong crypthographic authentication, such as WPA2
+
+After a reboot, the Wi-Fi card should be recognized and show up in the LuCI interface.
+
+## Make it speak SCION
 
 So far, I have a fully functional and highly configurable router, where I
 control the hard- and software. This was the first goal of the project. The next
@@ -222,10 +239,11 @@ other than the default.
 The following commands build the binaries using `musl-gcc` which is a wrapper for the
 `gcc` toolchain that targets musl-libc instead of glibc:
 
+``` bash
+CC=/usr/local/musl/bin/musl-gcc go build --ldflags '-linkmode external'
+CC=/usr/local/musl/bin/musl-gcc go build --ldflags '-linkmode external -extldflags "-static"'
 ```
-$ CC=/usr/local/musl/bin/musl-gcc go build --ldflags '-linkmode external'
-$ CC=/usr/local/musl/bin/musl-gcc go build --ldflags '-linkmode external -extldflags "-static"'
-```
+
 The first command builds dynamically linked binaries whereas the second command
 builds statically linked binaries.
 
@@ -249,21 +267,30 @@ started and stopped independently of SCION.
 
 ## Testing
 
-Coming soon
-
-{% comment %}
 ### Bandwidth measurements
 
-#### IP
-(add speedtest.net result image from gigabit lan)
-![Dowload and upload speed](/assets/images/scion-router/speedtest.png "Dowload
-and upload speed")
+To make sure everything works as expected and to get a sense of the performance, I first tested basic IP connectivity using [speedtest.net](https://speedtest.net) via Ethernet and Wi-Fi.
+
+#### Ethernet
+
+![Dowload and upload speed over Ethernet](/assets/images/scion-router/speedtest_ethernet.png "Dowload
+and upload speed over Ethernet")
+
+#### Wi-Fi
+
+![Dowload and upload speed over WiFi](/assets/images/scion-router/speedtest_wifi.jpg "Dowload
+and upload speed over WiFi")
+
+(SCION measurements follow)
+
+{% comment %}
 
 #### SCION
 
 ### Native SCION
 
 ### SIG
+
 {% endcomment %}
 
 ## Presentation
