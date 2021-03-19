@@ -1,6 +1,5 @@
 ---
 title: "Adding teaser images to the \"Recent posts\" list"
-date: "2021-02-19"
 header:
   teaser: /assets/images/post-teasers/thumbnail-teaser.png
 published: true
