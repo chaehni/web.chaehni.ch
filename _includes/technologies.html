@@ -1,14 +1,20 @@
 {% if page.techs %}
 
+<link rel="stylesheet" href="/assets/css/bootstrap-grid.css">
+
 <h3> Technology Stack </h3>
 
-{% for tech in page.techs %}
-<div>
-    <a href={{ tech.url }}>
-        <img class="technology-stack" src={{ tech.image }} alt={{ tech.name }} title={{ tech.title }}>
-    </a>
+<div class="container">
+    <div class="row">
+        {% for tech in page.techs %}
+        <div class="col-sm">
+            <a href={{ tech.url }}>
+                <img class="technology-stack" src={{ tech.image }} alt={{ tech.name }} title={{ tech.title }}>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
 </div>
-{% endfor %}
 <br>
 
 {% endif %}
