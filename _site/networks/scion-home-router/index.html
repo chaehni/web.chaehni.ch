@@ -1,0 +1,965 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Building a SCION enabled Home Router - Claude’s Blog</title>
+<meta name="description" content="How to bring SCION into your home!">
+
+
+  <meta name="author" content="Claude Hähni">
+  
+  <meta property="article:author" content="Claude Hähni">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Claude's Blog">
+<meta property="og:title" content="Building a SCION enabled Home Router">
+<meta property="og:url" content="https://web.chaehni.ch/networks/scion-home-router/">
+
+
+  <meta property="og:description" content="How to bring SCION into your home!">
+
+
+
+  <meta property="og:image" content="https://web.chaehni.ch/assets/images/scion-router/router-teaser.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-02-25T00:00:00+01:00">
+
+
+
+  <meta property="article:modified_time" content="2021-03-19T00:00:00+01:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://web.chaehni.ch/networks/scion-home-router/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Claude Hähni",
+      "url": "https://web.chaehni.ch/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Claude's Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Claude's Blog
+          <span class="site-subtitle">my personal IT adventures</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/publications/">Publications</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/scion-router/router-teaser.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          Building a SCION enabled Home Router
+
+        
+      </h1>
+      
+        <p class="page__lead">How to bring SCION into your home!
+</p>
+      
+      
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-02-25T00:00:00+01:00">February 25, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio-photo-square.jpg" alt="Claude Hähni" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Claude Hähni</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Researcher at ETH Zurich</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Zurich, Switzerland</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/chaehni" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/chaehni/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Building a SCION enabled Home Router">
+    <meta itemprop="description" content="How to bring SCION into your home!">
+    <meta itemprop="datePublished" content="2021-02-25T00:00:00+01:00">
+    <meta itemprop="dateModified" content="2021-03-19T00:00:00+01:00">
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#why-build-your-own-home-router">Why build your own home router?</a></li><li><a href="#overview">Overview</a></li><li><a href="#the-hardware">The Hardware</a><ul><li><a href="#assembling-the-router">Assembling the Router</a></li></ul></li><li><a href="#the-software">The Software</a><ul><li><a href="#openwrt">OpenWRT</a></li><li><a href="#accessing-the-board">Accessing the board</a></li><li><a href="#flashing-the-os">Flashing the OS</a></li><li><a href="#enabling-wi-fi">Enabling Wi-Fi</a></li></ul></li><li><a href="#make-it-speak-scion">Make it speak SCION</a><ul><li><a href="#compiling-the-scion-binaries">Compiling the SCION binaries</a></li><li><a href="#adding-a-scion-tab-to-the-luci-interface">Adding a SCION tab to the LuCI interface</a></li></ul></li><li><a href="#testing">Testing</a><ul><li><a href="#bandwidth-measurements">Bandwidth measurements</a><ul><li><a href="#ethernet">Ethernet</a></li><li><a href="#wi-fi">Wi-Fi</a></li></ul></li></ul></li><li><a href="#presentation">Presentation</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>The goal of this project is to build my own home router to access the Internet.
+In a second step, I then want to enable
+<a href="https://scion-architecture.net">SCION</a> support on the router by installing the
+SCION stack. The result will be a home router that can natively speak the SCION protocol
+and even translate between legacy IP and SCION using the
+<a href="https://docs.scionlab.org/content/apps/remote_sig.html">SCION IP Gateway (SIG)</a>. Of
+course, regular IP traffic should not be affected and work just fine in parallel
+to SCION.</p>
+
+<h2 id="why-build-your-own-home-router">Why build your own home router?</h2>
+
+<p>Reading the title of this post you might ask yourself: “Why build your own
+router when my ISP ships a perfectly capable router already?”
+The truth is that ISPs, like all companies, operate on a budget. It’s in their
+interest to sell as many Internet connections as possible for as low a cost as
+possible. ISP provided routers tend to be bad in a couple of ways:</p>
+
+<ul>
+  <li>ISP routers tend to be configured for their convenience and not for security
+in order to cut down on tech support.</li>
+  <li>Often, these devices are locked down in one way or the other. Certain features may not be available
+and cannot be added by the end user. I think that users should have full
+control over the devices they run in their own network.</li>
+  <li>Updates to ISP provided routers are a rare thing (if they happen at all).
+Something as critical as your router, protecting your home network from the
+Internet, should always operate with the latest security patches applied.</li>
+  <li>Potentially millions of people run the exact same router with the exact same
+standard configuration, making these routers a prime target for any attacker.</li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+
+<p>With the “Why?” out of the way, I’d now like to provide an overview of my envisioned router.</p>
+
+<p>The figure below shows an abstraction of the desired outcome. The router
+contains an IP and a SCION stack which are connected to their respective
+upstream networks. Between the two stacks sits the SIG which translates between
+IP and SCION. Clients can connect to the router via Ethernet or Wi-Fi.
+Independent of the connection, clients can make use of both network stacks.</p>
+
+<p><img src="/assets/images/scion-router/usecase_overview.png" alt="Usecase Overview" title="Router Overview" /></p>
+
+<p>It is clear, that IP packets from my client devices will use the IP stack on the router
+while SCION packets will use the SCION stack. However, with the SIG I have the
+possibility to translate certain IP connections to SCION connections. This is
+useful to make applications that are completely oblivious of SCION benefit from
+SCION features such as path selection, multi-path communication and hidden
+paths. The downside is that on the other end another SIG is needed
+to translate the SCION packets back to IP. This means that I need prior knowledge
+about which IP addresses sit behind a SIG and can therefore be accessed via
+SCION. I need to manually configure these address on my home router,
+such that it knows to send corresponding packets via the SIG, translating the
+connections to SCION. The goal is to make this configuration easily
+accessible via the router’s web interface.</p>
+
+<p class="notice--info">A few words about residential SCION connectivity: Because most ISPs, like mine, don’t yet
+offer a native SCION connection, I will connect my router to the
+<a href="https://www.scionlab.org/">SCIONLab</a> network. SCIONLab is a global research
+network, open to anyone who wants to try out SCION. Once my ISP offers
+access to the SCION production network I’ll be able to easily switch over to
+that network.</p>
+
+<h2 id="the-hardware">The Hardware</h2>
+
+<p>For the hardware, I chose the APU platform from <a href="https://www.pcengines.ch/">PC
+Engines</a> which is a widely adopted server platform
+for low power, wireless networking and embedded applications based on the x86
+architecture. All the parts required for this build are listed below.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Part</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>apu2e4</td>
+      <td>APU.2E4 system board (GX-412TC quad core / 4GB / 3 Intel GigE / 2 miniPCI express / mSATA / USB / RTC battery)</td>
+    </tr>
+    <tr>
+      <td>case1d2bluu</td>
+      <td>Enclosure for alix2 / apu1 / apu2 (3 LAN, blue, USB)</td>
+    </tr>
+    <tr>
+      <td>ac12veur3</td>
+      <td>AC adapter with euro plug</td>
+    </tr>
+    <tr>
+      <td>msata16g</td>
+      <td>16GB mSATA SSD module</td>
+    </tr>
+    <tr>
+      <td>wle600vx</td>
+      <td>Compex WLE600VX 802.11ac miniPCI express wireless card</td>
+    </tr>
+    <tr>
+      <td>2 x antsmadb</td>
+      <td>Antenna</td>
+    </tr>
+    <tr>
+      <td>2 x pigsma</td>
+      <td>IPEX to reverse SMA pigtail cable</td>
+    </tr>
+    <tr>
+      <td>usbcom1a</td>
+      <td>USB to DB9F serial adapter</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="assembling-the-router">Assembling the Router</h3>
+
+<p>For the basic assembly of the APU I followed this video:</p>
+
+<p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ft_Ic2ZdLHw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</p>
+
+<p>In addition to the standard setup, of course I also wanted my router to be Wi-Fi capable!
+For that reason I installed the miniPCI wireless card and the antennas.</p>
+
+<p>Internals of my router:
+<img src="/assets/images/scion-router/router_internals.jpg" alt="Router internals" title="Router internals" /></p>
+
+<p>This is what my fully assembled router looks like:
+<img src="/assets/images/scion-router/router.jpg" alt="Full assembled SCION Router" title="Fully assembled SCION Router" /></p>
+
+<h2 id="the-software">The Software</h2>
+
+<p>Of course, hardware alone doesn’t make a router. Luckily, there are excellent
+open-source router platforms available. One of them is OpenWRT.</p>
+
+<h3 id="openwrt">OpenWRT</h3>
+
+<p><a href="https://openwrt.org/">OpenWRT</a> is a full Linux-based operating system
+designed for wireless routers. It offers a writable file system and it even
+includes a package manager which makes the OS highly extensible. OpenWRT has
+wide support for different hardware, including our
+<a href="https://openwrt.org/toh/pcengines/apu2">APU2</a> board.</p>
+
+<p>OpenWRT ships with a web UI called LuCI. LuCI is your typical router’s user
+interface which you can access over the web (usually <code class="language-plaintext highlighter-rouge">192.168.1.1</code>).
+However, like everything else about OpenWRT it is very feature rich and highly customizable.</p>
+
+<h3 id="accessing-the-board">Accessing the board</h3>
+
+<p>Since the APU2 board does not have a display output and SSH is only available
+once the OS is installed, we need to rely on the DB9 serial port to establish a
+connection. There are several serial communication programs available. I used
+<code class="language-plaintext highlighter-rouge">picocom</code>. The following command connects to the board
+over the USB-to-serial cable plugged into my computer and the APU:</p>
+
+<p><code class="language-plaintext highlighter-rouge">picocom -b 115200 /dev/ttyUSB0</code></p>
+
+<p>115200 is the baud rate (or symbol rate) of the APU.</p>
+
+<h3 id="flashing-the-os">Flashing the OS</h3>
+
+<p>At the time of writing, the most recent OpenWRT version is <code class="language-plaintext highlighter-rouge">19.06.4</code> and can
+be downloaded from
+<a href="https://downloads.openwrt.org/releases/18.06.4/targets/x86/64/">here</a>.
+I’ll be using the Ext4 file system instead of the squashfs because I’d like to
+have a fully writable file system and space limitations are not a concern thanks
+to the large 16GB SSD installed in the board. The OS comes with two partitions, the boot partition and
+the root file system partition. I used to following steps to flash the OS to the
+board and expand the root file system to us the full size of the SDD (instead of
+an SD card, one can also use a USB thumb drive):</p>
+
+<ul>
+  <li>Copy the downloaded image onto to an SD card: <code class="language-plaintext highlighter-rouge">gzip -dc openwrt-19.07.7-x86-64-combined-ext4.img.gz | sudo dd status=progress bs=8M of=/dev/sdX</code></li>
+  <li>Boot the board from SD card</li>
+  <li>Clone the SD onto the SSD drive: <code class="language-plaintext highlighter-rouge">dd bs=8M if=/dev/mmcblk0 of=/dev/sda</code></li>
+  <li>The root partition now has the same size (256M) as the SD. We need to increase it:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">fdisk /dev/sda</code> (fdisk needs to be installed)</li>
+      <li><code class="language-plaintext highlighter-rouge">d 2</code> to delete the root file system partition on the SSD</li>
+      <li><code class="language-plaintext highlighter-rouge">n 2</code> to create a new partition, when asked for input accept standard values</li>
+      <li><code class="language-plaintext highlighter-rouge">p</code> to see the new partition layout, confirm the second partition has increased in size</li>
+      <li><code class="language-plaintext highlighter-rouge">w</code> to write the changes to disk</li>
+    </ul>
+  </li>
+  <li>Copy over the root file system from the SD card: <code class="language-plaintext highlighter-rouge">dd bs=8M if=/dev/mmcblk0p2 of=/dev/sda2</code></li>
+  <li>Expand the file system to make use of the entire partition:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">e2fsck -f /dev/sda2</code> (accept eventual repairs)</li>
+      <li><code class="language-plaintext highlighter-rouge">resize2fs /dev/sda2</code> (resize2fs needs to be installed)</li>
+    </ul>
+  </li>
+  <li>remove the SD card and boot from SSD, confirm the root partition <code class="language-plaintext highlighter-rouge">/dev/root</code> has increased in size: <code class="language-plaintext highlighter-rouge">df -h</code></li>
+</ul>
+
+<p>Success! The router can now be accessed via browser at <code class="language-plaintext highlighter-rouge">192.168.1.1</code>.</p>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/scion-router/luci.png" title="LuCI router interface">
+          <img src="/assets/images/scion-router/luci.png" alt="LuCI router interface" />
+      </a>
+    
+  
+  
+</figure>
+
+<h3 id="enabling-wi-fi">Enabling Wi-Fi</h3>
+
+<p>OpenWRT does not ship with the driver and firmware for the wle600vx Wi-Fi card out of the box. The following packages need to be installed manually:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ath10k-firmware-qca988x</code> - the firmware for the Qualcom Atheros 9882 SoC on the card</li>
+  <li><code class="language-plaintext highlighter-rouge">kmod-ath10k</code> - the driver for our Atheros based card</li>
+  <li><code class="language-plaintext highlighter-rouge">wpad-mini</code> - for adding support for strong crypthographic authentication, such as WPA2</li>
+</ul>
+
+<p>After a reboot, the Wi-Fi card should be recognized and show up in the LuCI interface.</p>
+
+<h2 id="make-it-speak-scion">Make it speak SCION</h2>
+
+<p>So far, I have a fully functional and highly configurable router, where I
+control the hard- and software. This was the first goal of the project. The next
+step is now to install the SION stack on the router. The plan is to run
+a full SCION autonomous system (AS) inside the router. For this, I will install
+the <code class="language-plaintext highlighter-rouge">SCION Control Service</code>, <code class="language-plaintext highlighter-rouge">SCION Border Router</code>, <code class="language-plaintext highlighter-rouge">SCION Dispatcher</code>, <code class="language-plaintext highlighter-rouge">SCION Daemon</code>
+and the <code class="language-plaintext highlighter-rouge">SCION IP Gateway</code>.</p>
+
+<h3 id="compiling-the-scion-binaries">Compiling the SCION binaries</h3>
+
+<p>The services listed above are written in Google’s <a href="https://golang.org/">Go</a>
+programming language and are targeting Debian x86 systems. However, some
+of the services call functions from the C standard library behind the scenes.
+Since Debian uses the GNU C Library (glibc), the services are dynamically
+linking against that specific libc implementation. Usually this is not a
+problem. However, OpenWRT uses musl-libc which means that
+the services need to be compiled from source against musl-libc.
+Luckily, it is easy to adapt the usual <code class="language-plaintext highlighter-rouge">go build</code> command to accept a C compiler
+other than the default.
+The following commands build the binaries using <code class="language-plaintext highlighter-rouge">musl-gcc</code> which is a wrapper for the
+<code class="language-plaintext highlighter-rouge">gcc</code> toolchain that targets musl-libc instead of glibc:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CC</span><span class="o">=</span>/usr/local/musl/bin/musl-gcc go build <span class="nt">--ldflags</span> <span class="s1">'-linkmode external'</span>
+<span class="nv">CC</span><span class="o">=</span>/usr/local/musl/bin/musl-gcc go build <span class="nt">--ldflags</span> <span class="s1">'-linkmode external -extldflags "-static"'</span>
+</code></pre></div></div>
+
+<p>The first command builds dynamically linked binaries whereas the second command
+builds statically linked binaries.</p>
+
+<h3 id="adding-a-scion-tab-to-the-luci-interface">Adding a SCION tab to the LuCI interface</h3>
+
+<p>With the back end ready to to speak SCION, the only thing missing now is a new
+tab in the LuCI user interface to configure the SCION configuration.</p>
+
+<p>A brief explanation on how to add a new tab to the LuCI interface can be found
+<a href="https://openwrt.org/docs/guide-developer/luci">here</a>. Essentially, it requires
+a web view written in HTML together with a back end written in Lua. I added a SCION tab with
+two sub-tabs, one for the SCION configuration and one for the SIG configuration.</p>
+
+<p>This is the result:</p>
+
+<figure class="half ">
+  
+    
+      <a href="/assets/images/scion-router/luci_scion_setup.png" title="SCION setup interface">
+          <img src="/assets/images/scion-router/luci_scion_setup.png" alt="SCION setup interface" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/scion-router/luci_scion_sig.png" title="SIG setup interface">
+          <img src="/assets/images/scion-router/luci_scion_sig.png" alt="SIG setup interface" />
+      </a>
+    
+  
+  
+</figure>
+
+<p>I can upload any valid SCION configuration and then use the <code class="language-plaintext highlighter-rouge">Start</code>, <code class="language-plaintext highlighter-rouge">Restart</code> and
+<code class="language-plaintext highlighter-rouge">Stop</code> buttons to control the SCION installation through the convenience of
+the LuCI interface. Additionally, SIG rules can be defined and the SIG can be
+started and stopped independently of SCION.</p>
+
+<h2 id="testing">Testing</h2>
+
+<h3 id="bandwidth-measurements">Bandwidth measurements</h3>
+
+<p>To make sure everything works as expected and to get a sense of the performance, I first tested basic IP connectivity using <a href="https://speedtest.net">speedtest.net</a> via Ethernet and Wi-Fi.</p>
+
+<h4 id="ethernet">Ethernet</h4>
+
+<p><img src="/assets/images/scion-router/speedtest_ethernet.png" alt="Dowload and upload speed over Ethernet" title="Dowload
+and upload speed over Ethernet" /></p>
+
+<h4 id="wi-fi">Wi-Fi</h4>
+
+<p><img src="/assets/images/scion-router/speedtest_wifi.jpg" alt="Dowload and upload speed over WiFi" title="Dowload
+and upload speed over WiFi" /></p>
+
+<p>(SCION measurements follow)</p>
+
+<h2 id="presentation">Presentation</h2>
+
+<p>The SCION home router has been showcased at the SCION Day on November 6, 2019.
+Find the slides and video here: <a href="https://video.ethz.ch/events/2019/scion/61dd8a87-3894-489d-99d3-77ca66c5ad38.html">SCION Day presentation</a>.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+
+<link rel="stylesheet" href="/assets/css/bootstrap-grid.css">
+
+<h3> Technology Stack </h3>
+
+<div class="container">
+    <div class="row">
+        
+        <div class="col-sm">
+            <a href=https://openwrt.org/>
+                <img class="technology-stack" src=/assets/images/tech/openwrt.png alt=OpenWrt title=>
+            </a>
+        </div>
+        
+        <div class="col-sm">
+            <a href=https://www.scion-architecture.net/>
+                <img class="technology-stack" src=/assets/images/tech/scion.png alt=SCION title=>
+            </a>
+        </div>
+        
+        <div class="col-sm">
+            <a href=https://www.musl-libc.org/>
+                <img class="technology-stack" src=/assets/images/tech/musl.png alt=musl libc title=>
+            </a>
+        </div>
+        
+        <div class="col-sm">
+            <a href=https://golang.org/>
+                <img class="technology-stack" src=/assets/images/tech/golang.png alt=Go title=>
+            </a>
+        </div>
+        
+        <div class="col-sm">
+            <a href=http://www.lua.org/>
+                <img class="technology-stack" src=/assets/images/tech/lua.png alt=Lua title=>
+            </a>
+        </div>
+        
+    </div>
+</div>
+<br>
+
+
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#hardware" class="page__taxonomy-item" rel="tag">Hardware</a><span class="sep">, </span>
+    
+      <a href="/tags/#openwrt" class="page__taxonomy-item" rel="tag">OpenWRT</a><span class="sep">, </span>
+    
+      <a href="/tags/#scion" class="page__taxonomy-item" rel="tag">SCION</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#networks" class="page__taxonomy-item" rel="tag">Networks</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-03-19">March 19, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Building+a+SCION+enabled+Home+Router%20https%3A%2F%2Fweb.chaehni.ch%2Fnetworks%2Fscion-home-router%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fweb.chaehni.ch%2Fnetworks%2Fscion-home-router%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fweb.chaehni.ch%2Fnetworks%2Fscion-home-router%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/web/blog-thumbnails/" class="pagination--pager" title="Adding teaser images to the “Recent posts” list
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <div class="archive__item-teaser">
+      <img src="/assets/images/post-teasers/thumbnail-teaser.png" alt="">
+    </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+      <a href="/web/blog-thumbnails/" rel="permalink">Adding teaser images to the “Recent posts” list
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-02-19T00:00:00+01:00">February 19, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    
+    <p class="archive__item-excerpt" itemprop="description">For my blog, I wanted to have teaser images in the “Recent posts” overview shown on
+the main page.
+Unfortunately, the Jekyll theme I use for this blog,
+minim...</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+    <li><strong>Follow:</strong></li>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    <li><a href="https://github.com/chaehni" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github"
+          aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li><a href="https://www.linkedin.com/in/chaehni/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin"
+          aria-hidden="true"></i> Linkedin</a></li>
+    
+    
+    
+
+    
+    <li><a
+        href="/feed.xml"><i
+          class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<!-- <div class="page__footer-copyright">&copy; 2021 Claude Hähni. Powered by <a href="https://jekyllrb.com"
+    rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/"
+    rel="nofollow">Minimal Mistakes</a>.</div> -->
+<div class="page__footer-copyright">&copy; 2021 Claude Hähni</div>
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFZRZSB2SJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WFZRZSB2SJ', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://web.chaehni.ch/networks/scion-home-router/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/networks/scion-home-router"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://web-chaehni-ch.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

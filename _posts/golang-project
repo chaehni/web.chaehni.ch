@@ -1,0 +1,6 @@
+a project about golang
+
+perhaps:
+- how to build static site routers with typescript front end
+- how to write a packet decoder for layers that are not the start layer (hack
+with abusing another protocol number1)
