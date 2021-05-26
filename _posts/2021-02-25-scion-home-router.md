@@ -2,7 +2,7 @@
 title: "Building a SCION enabled Home Router"
 excerpt: How to bring SCION into your home!
 toc: true
-last_modified_at: 2021-03-19
+last_modified_at: 2021-05-26
 header:
   overlay_image: "/assets/images/scion-router/router-teaser.jpg"
   overlay_filter: 0.5
