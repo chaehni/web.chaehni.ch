@@ -11,7 +11,7 @@ toc: false
 > telescopes.  
 -- E. W. Dijkstra
 
-Hello there! My name is Claude Hähni, researcher at the Swiss Federal Institute of
+Hello there! My name is Claude Hähni. I'm an IT Consultant at ipt.ch and a former researcher at the Swiss Federal Institute of
 Technology in Zurich (ETHZ).
 This blog is a space for me to document and share various things related to my work
 as a computer scientist.
