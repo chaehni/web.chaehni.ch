@@ -11,9 +11,9 @@ This page is a collection of my published work including conference papers and t
 
 ## Conference Papers
 ### Tableau
-**Title**: *Tableau: Future-Proof Zoning for OT Networks*
+**Title**: *Tableau: Future-Proof Zoning for OT Networks*  
 **Authors**: *Piet De Vaere, Claude Hähni, Franco Monti, Adrian Perrig*  
-**Published at**: *CRITIS 2021*
+**Published at**: *CRITIS 2021*  
 
 [Download](/downloads/tableau_paper.pdf)
 |
