@@ -10,6 +10,15 @@ toc: true
 This page is a collection of my published work including conference papers and theses.
 
 ## Conference Papers
+### Tableau
+**Title**: *Tableau: Future-Proof Zoning for OT Networks*
+**Authors**: *Piet De Vaere, Claude Hähni, Franco Monti, Adrian Perrig*  
+**Published at**: *CRITIS 2021*
+
+[Download](/downloads/tableau_paper.pdf)
+|
+[Link to Springer](https://link.springer.com/chapter/10.1007/978-3-030-93200-8_12)
+
 ### Mondrian
 **Title**: *Mondrian: Comprehensive Inter-domain Network Zoning Architecture*  
 **Authors**: *Jonghoon Kwon, Claude Hähni, Patrick
