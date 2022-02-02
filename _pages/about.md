@@ -3,7 +3,7 @@ permalink: /about/
 title: "About"
 excerpt: "About myself"
 read_time: false
-last_modified_at: 2021-02-19
+last_modified_at: 2022-02-02
 toc: false
 ---
 
