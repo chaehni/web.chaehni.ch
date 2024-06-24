@@ -2,7 +2,7 @@
 title: "Building a SCION enabled Home Router"
 excerpt: How to bring SCION into your home!
 toc: true
-last_modified_at: 2021-05-26
+last_modified_at: 2024-06-24
 header:
   overlay_image: "/assets/images/scion-router/router-teaser.jpg"
   overlay_filter: 0.5
@@ -184,7 +184,7 @@ I'll be using the Ext4 file system instead of the squashfs because I'd like to
 have a fully writable file system and space limitations are not a concern thanks
 to the large 16GB SSD installed in the board. The OS comes with two partitions, the boot partition and
 the root file system partition. I used to following steps to flash the OS to the
-board and expand the root file system to us the full size of the SDD (instead of
+board and expand the root file system to use the full size of the SDD (instead of
 an SD card, one can also use a USB thumb drive):
 
 - Copy the downloaded image onto to an SD card: `gzip -dc openwrt-19.07.7-x86-64-combined-ext4.img.gz | sudo dd status=progress bs=8M of=/dev/sdX`
