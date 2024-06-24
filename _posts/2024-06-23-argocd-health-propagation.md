@@ -11,8 +11,8 @@ published: true
 before_gallery:
   - url: /assets/images/argo-health/broken_component.png
     image_path: /assets/images/argo-health/broken_component.png
-    alt: application component that is not healthy
-    title: application component that is not healthy
+    alt: Showing an application component (child application) that is not healthy because of pods that are not starting.
+    title: Showing an application component (child application) that is not healthy because of pods that are not starting.
   - url: /assets/images/argo-health/no_health_propagation.png
     image_path: /assets/images/argo-health/no_health_propagation.png
     alt: One level higher, the broken application is not visible
