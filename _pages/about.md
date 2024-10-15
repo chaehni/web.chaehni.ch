@@ -3,7 +3,7 @@ permalink: /about/
 title: "About"
 excerpt: "About myself"
 read_time: false
-last_modified_at: 2022-02-02
+last_modified_at: 2024-10-15
 toc: false
 ---
 
@@ -26,5 +26,7 @@ with exciting technologies.
 ## Certifications
 
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="7db0f560-3404-40de-89be-6a6bbf97853c" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="2b4bc464-cd7e-4ebe-9112-6d28b5d9ad7c" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 ![CCAAK certificate](https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/83235023)
